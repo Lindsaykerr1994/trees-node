@@ -3,3 +3,12 @@ GET http://localhost:8000/trees
 ###
 
 GET http://localhost:8000/trees/14
+
+###
+
+POST http://localhost:8000/trees
+Content-Type: application/json
+
+{
+    "name": "English Oak"
+}
