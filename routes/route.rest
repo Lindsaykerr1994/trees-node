@@ -2,7 +2,7 @@ GET http://localhost:8000/trees
 
 ###
 
-GET http://localhost:8000/trees/62cc56e6372b2d91557b4141
+GET http://localhost:8000/trees/62cc597772a504d1e2055b54
 
 ###
 
@@ -12,3 +12,8 @@ Content-Type: application/json
 {
     "name": "English Oak"
 }
+
+
+### 
+
+DELETE http://localhost:8000/trees/62cc597772a504d1e2055b54

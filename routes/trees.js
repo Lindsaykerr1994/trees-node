@@ -32,7 +32,13 @@ router.patch('/:id', (req, res) => {
 
 })
 // Deleting one
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getTree, async (req, res) => {
+    try {
+        await res.tree.remove()
+        res.json({ message: 'Successfully deleted object'})
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
 
 async function getTree(req, res, next) {
