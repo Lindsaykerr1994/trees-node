@@ -28,8 +28,16 @@ router.post('/', async (req, res) => {
     }
 })
 // Updating one
-router.patch('/:id', (req, res) => {
-
+router.patch('/:id', getTree, async (req, res) => {
+    if (req.body.name != null) {
+        res.tree.name = req.body.name
+    }
+    try {
+        const updatedTree = await res.tree.save()
+        res.json(updatedTree)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 // Deleting one
 router.delete('/:id', getTree, async (req, res) => {
