@@ -12,8 +12,8 @@ router.get('/', async (req, res) => {
     }
 })
 // Getting one
-router.get('/:id', (req, res) => {
-    res.send(req.params.id)
+router.get('/:id', getTree, (req, res) => {
+    res.send(res.tree.name)
 })
 // Creating one
 router.post('/', async (req, res) => {
@@ -33,7 +33,20 @@ router.patch('/:id', (req, res) => {
 })
 // Deleting one
 router.delete('/:id', (req, res) => {
-
 })
+
+async function getTree(req, res, next) {
+    let tree;
+    try {
+        tree = await Tree.findById(req.params.id)
+        if (tree == null) {
+            return res.status(404).json({ message: 'Cannot find tree' });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+    res.tree = tree;
+    next()
+}
 
 module.exports = router
