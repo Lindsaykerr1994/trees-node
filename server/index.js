@@ -13,7 +13,7 @@ db.once('open', () => console.log('Connected to Database'));
 app.use(express.json())
 
 const treeRouter = require('../routes/trees');
-app.use('/trees')
+app.use('/trees', treeRouter)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
